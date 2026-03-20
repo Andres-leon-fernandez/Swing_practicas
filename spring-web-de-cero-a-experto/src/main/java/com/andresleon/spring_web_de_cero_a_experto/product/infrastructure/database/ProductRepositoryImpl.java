@@ -1,7 +1,7 @@
 package com.andresleon.spring_web_de_cero_a_experto.product.infrastructure.database;
 
-import com.andresleon.spring_web_de_cero_a_experto.product.domain.Product;
-import com.andresleon.spring_web_de_cero_a_experto.product.domain.ProductRepository;
+import com.andresleon.spring_web_de_cero_a_experto.product.domain.entity.Product;
+import com.andresleon.spring_web_de_cero_a_experto.product.domain.port.ProductRepository;
 import com.andresleon.spring_web_de_cero_a_experto.product.infrastructure.database.entity.ProductEntity;
 import com.andresleon.spring_web_de_cero_a_experto.product.infrastructure.database.mapper.ProductEmtityMapper;
 import lombok.RequiredArgsConstructor;

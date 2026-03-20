@@ -1,4 +1,6 @@
-package com.andresleon.spring_web_de_cero_a_experto.product.domain;
+package com.andresleon.spring_web_de_cero_a_experto.product.domain.port;
+
+import com.andresleon.spring_web_de_cero_a_experto.product.domain.entity.Product;
 
 import java.util.List;
 import java.util.Optional;

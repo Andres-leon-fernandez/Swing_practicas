@@ -1,8 +1,9 @@
 package com.andresleon.spring_web_de_cero_a_experto.product.application.query.getById;
 
 import com.andresleon.spring_web_de_cero_a_experto.common.mediator.RequestHandler;
-import com.andresleon.spring_web_de_cero_a_experto.product.domain.Product;
-import com.andresleon.spring_web_de_cero_a_experto.product.domain.ProductRepository;
+import com.andresleon.spring_web_de_cero_a_experto.product.domain.entity.Product;
+import com.andresleon.spring_web_de_cero_a_experto.product.domain.exception.ProductNotFoundException;
+import com.andresleon.spring_web_de_cero_a_experto.product.domain.port.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class GetProductByIdHandler implements RequestHandler<GetProductByIdReque
 
     @Override
     public GetProductByIdResponse handle(GetProductByIdRequest request) {
-        Product product = productRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Producto dont found"));
+        Product product = productRepository.findById(request.getId()).orElseThrow(() -> new ProductNotFoundException(request.getId()));
         return new GetProductByIdResponse(product);
     }
 

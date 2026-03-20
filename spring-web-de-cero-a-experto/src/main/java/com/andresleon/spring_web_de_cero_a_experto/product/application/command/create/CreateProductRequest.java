@@ -2,6 +2,7 @@ package com.andresleon.spring_web_de_cero_a_experto.product.application.command.
 
 import com.andresleon.spring_web_de_cero_a_experto.common.mediator.Request;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class CreateProductRequest implements Request<Void> {
@@ -9,5 +10,5 @@ public class CreateProductRequest implements Request<Void> {
     private String name;
     private String description;
     private Double price;
-    private String image;
+    private MultipartFile file;
 }

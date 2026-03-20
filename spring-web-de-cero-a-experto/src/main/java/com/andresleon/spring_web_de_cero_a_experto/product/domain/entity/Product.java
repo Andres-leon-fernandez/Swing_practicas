@@ -1,4 +1,4 @@
-package com.andresleon.spring_web_de_cero_a_experto.product.domain;
+package com.andresleon.spring_web_de_cero_a_experto.product.domain.entity;
 
 import lombok.*;
 

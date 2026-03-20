@@ -8,8 +8,11 @@ import com.andresleon.spring_web_de_cero_a_experto.product.application.query.get
 import com.andresleon.spring_web_de_cero_a_experto.product.application.query.getAll.GetAllProductsResponse;
 import com.andresleon.spring_web_de_cero_a_experto.product.application.query.getById.GetProductByIdRequest;
 import com.andresleon.spring_web_de_cero_a_experto.product.application.query.getById.GetProductByIdResponse;
+import com.andresleon.spring_web_de_cero_a_experto.product.infrastructure.api.dto.CreateProductDto;
 import com.andresleon.spring_web_de_cero_a_experto.product.infrastructure.api.dto.ProductDto;
+import com.andresleon.spring_web_de_cero_a_experto.product.infrastructure.api.dto.UpdateProductDto;
 import com.andresleon.spring_web_de_cero_a_experto.product.infrastructure.api.mapper.ProductMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +47,7 @@ public class ProductController implements ProductApi {
     }
 
     @PostMapping("")
-    public ResponseEntity<Void> saveProduct(@RequestBody ProductDto productDto) {
+    public ResponseEntity<Void> saveProduct(@ModelAttribute @Valid CreateProductDto productDto) {
 
         CreateProductRequest request = productMapper.mapToCreateProductRequest(productDto);
 
@@ -54,7 +57,7 @@ public class ProductController implements ProductApi {
     }
 
     @PutMapping("")
-    public ResponseEntity<Void> updateProductById(@RequestBody ProductDto productDto) {
+    public ResponseEntity<Void> updateProductById(@RequestBody @Valid UpdateProductDto productDto) {
 
         UpdateProductRequest request = productMapper.mapTUpdateProductRequest(productDto);
         mediator.dispatch(request);
@@ -64,7 +67,7 @@ public class ProductController implements ProductApi {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProductById(@PathVariable Long id) {
 
-        mediator.dispatch(new DeleteProductRequest(id));
-        return ResponseEntity.noContent().build();
+        mediator.dispatchAsync(new DeleteProductRequest(id));
+        return ResponseEntity.accepted().build();
     }
 }

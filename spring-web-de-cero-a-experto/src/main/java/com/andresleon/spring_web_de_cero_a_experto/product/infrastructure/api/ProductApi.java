@@ -1,6 +1,8 @@
 package com.andresleon.spring_web_de_cero_a_experto.product.infrastructure.api;
 
+import com.andresleon.spring_web_de_cero_a_experto.product.infrastructure.api.dto.CreateProductDto;
 import com.andresleon.spring_web_de_cero_a_experto.product.infrastructure.api.dto.ProductDto;
+import com.andresleon.spring_web_de_cero_a_experto.product.infrastructure.api.dto.UpdateProductDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +16,9 @@ public interface ProductApi {
 
     public ResponseEntity<ProductDto> getProductById(@PathVariable Long id);
 
-    public ResponseEntity<Void> saveProduct(@RequestBody ProductDto productDto);
+    public ResponseEntity<Void> saveProduct(@RequestBody CreateProductDto productDto);
 
-    public ResponseEntity<Void> updateProductById(@RequestBody ProductDto productDto);
+    public ResponseEntity<Void> updateProductById(@RequestBody UpdateProductDto productDto);
 
     public ResponseEntity<Void> deleteProductById(@PathVariable Long id);
 }
