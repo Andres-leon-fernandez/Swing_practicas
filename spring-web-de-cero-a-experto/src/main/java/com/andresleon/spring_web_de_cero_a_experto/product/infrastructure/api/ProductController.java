@@ -14,6 +14,7 @@ import com.andresleon.spring_web_de_cero_a_experto.product.infrastructure.api.dt
 import com.andresleon.spring_web_de_cero_a_experto.product.infrastructure.api.mapper.ProductMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
+@Slf4j
 public class ProductController implements ProductApi {
 
     private final Mediator mediator;
@@ -31,7 +33,7 @@ public class ProductController implements ProductApi {
     @GetMapping("")
     public ResponseEntity<List<ProductDto>> getAllProduct(@RequestParam(required = false) String pageSize) {
         GetAllProductsResponse response = mediator.dispatch(new GetAllProductsRequest());
-        List<ProductDto> productDtos = response.getProducts().stream().map(productMapper::mapToProduct).toList();
+        List<ProductDto> productDtos = response.getProducts().stream().map(productMapper::mapToProductDto).toList();
         return ResponseEntity.ok(productDtos);
     }
 
@@ -40,7 +42,7 @@ public class ProductController implements ProductApi {
 
         GetProductByIdResponse responsive = mediator.dispatch(new GetProductByIdRequest(id));
 
-        ProductDto productDto = productMapper.mapToProduct(responsive.getProduct());
+        ProductDto productDto = productMapper.mapToProductDto(responsive.getProduct());
 
 
         return ResponseEntity.ok(productDto);
